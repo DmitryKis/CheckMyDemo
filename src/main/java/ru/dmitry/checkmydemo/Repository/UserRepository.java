@@ -8,4 +8,5 @@ import ru.dmitry.checkmydemo.Entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
+    User findByUsernameOrId(String username, Long id);
 }
