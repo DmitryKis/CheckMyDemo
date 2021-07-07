@@ -25,11 +25,11 @@ public class LoginController {
 
     @PostMapping("/login")
     public String signIn(User user, Model model, HttpServletResponse response) {
-        User userRepositoryByUsernameOrId = userRepository.findByUsernameOrId(user.getUsername(), null);
-        if (userRepositoryByUsernameOrId == null || !passwordEncoder.matches(user.getPassword(), userRepositoryByUsernameOrId.getPassword())) {
+        User userRepositoryByUsernameOrEmail = userRepository.findByUsernameOrEmail(user.getUsername(), user.getUsername());
+        if (userRepositoryByUsernameOrEmail == null || !passwordEncoder.matches(user.getPassword(), userRepositoryByUsernameOrEmail.getPassword())) {
             return "login";
         }
-        Cookie cookie = new Cookie("userId", userRepositoryByUsernameOrId.getId().toString());
+        Cookie cookie = new Cookie("userId", userRepositoryByUsernameOrEmail.getId().toString());
         response.addCookie(cookie);
         return "redirect:/home";
     }

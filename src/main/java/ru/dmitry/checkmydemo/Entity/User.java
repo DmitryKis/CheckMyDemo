@@ -32,11 +32,21 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
+    private boolean active;
+
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roleSet;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public Long getId() {
         return id;
