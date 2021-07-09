@@ -25,6 +25,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    private String activationToken;
+
     @Column(name = "password")
     private String password;
 
@@ -95,6 +97,14 @@ public class User {
 
     public void setRoleSet(Set<Role> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    public String getActivationToken() {
+        return activationToken;
+    }
+
+    public void setActivationToken(String activationToken) {
+        this.activationToken = activationToken;
     }
 
     @Override
